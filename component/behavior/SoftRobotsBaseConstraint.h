@@ -119,7 +119,6 @@ public:
 
     /// Allows the constraint of having access to the result.
     virtual void storeResults(helper::vector<double> &lambda, helper::vector<double> &delta);
-
     virtual void storeResults(helper::vector<double> &delta);
 
     /// Useful when the Constraint is applied only on a subset of dofs.
@@ -128,6 +127,22 @@ public:
     /// That way, we can optimize the time spent to transfer quantities through the mechanical mappings.
     /// Every Dofs are inserted by default. The Constraint using only a subset of dofs should only insert these dofs in the mask.
     void updateForceMask() override {}
+
+    /// Build the global vectors containing the limits on lambda
+    ///
+    /// \param lambdaMin
+    /// \param lambdaMax
+    /// \param constraintId
+    void buildLambdaLimitsVector(defaulttype::BaseVector* lambdaMin,
+                                 defaulttype::BaseVector* lambdaMax,
+                                 const unsigned int& constraintId);
+
+    /// Build the global vectors containing the limits on delta
+    ///
+    /// \param deltaMin
+    /// \param deltaMax
+    void buildDeltaLimitsVector(helper::vector<double>* deltaMin,
+                                helper::vector<double>* deltaMax);
 
 
 protected:

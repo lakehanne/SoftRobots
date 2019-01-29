@@ -27,6 +27,7 @@
 * Contact information: https://project.inria.fr/softrobot/contact/            *
 *                                                                             *
 ******************************************************************************/
+
 #include "SoftRobotsBaseConstraint.h"
 
 namespace sofa
@@ -39,6 +40,7 @@ namespace behavior
 {
 
 using helper::vector;
+using defaulttype::BaseVector;
 
 SoftRobotsBaseConstraint::SoftRobotsBaseConstraint()
     : m_hasDeltaMax(false)
@@ -133,6 +135,27 @@ unsigned int SoftRobotsBaseConstraint::getNbLines()
 {
     return m_nbLines;
 }
+
+
+void SoftRobotsBaseConstraint::buildLambdaLimitsVector(BaseVector* lambdaMin,
+                                                       BaseVector* lambdaMax,
+                                                       const unsigned int& constraintId)
+{
+    lambdaMin->set(int(constraintId), hasLambdaMin()? getLambdaMin() : -std::numeric_limits<double>::max());
+    lambdaMax->set(int(constraintId), hasLambdaMax()? getLambdaMax() : std::numeric_limits<double>::max());
+}
+
+
+void SoftRobotsBaseConstraint::buildDeltaLimitsVector(helper::vector<double> *deltaMin,
+                                                      helper::vector<double> *deltaMax)
+{
+    if(hasDeltaMin() || hasDeltaMax())
+    {
+        deltaMin->push_back(hasDeltaMin()? getDeltaMin() : -std::numeric_limits<double>::max());
+        deltaMax->push_back(hasDeltaMax()? getDeltaMax() : std::numeric_limits<double>::max());
+    }
+}
+
 
 void SoftRobotsBaseConstraint::storeResults(vector<double>& lambda, vector<double> &delta)
 {
