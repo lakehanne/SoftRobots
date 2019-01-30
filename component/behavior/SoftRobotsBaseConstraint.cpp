@@ -137,12 +137,11 @@ unsigned int SoftRobotsBaseConstraint::getNbLines()
 }
 
 
-void SoftRobotsBaseConstraint::buildLambdaLimitsVector(BaseVector* lambdaMin,
-                                                       BaseVector* lambdaMax,
-                                                       const unsigned int& constraintId)
+void SoftRobotsBaseConstraint::buildLambdaLimitsVector(helper::vector<double> *lambdaMin,
+                                                       helper::vector<double> *lambdaMax)
 {
-    lambdaMin->set(int(constraintId), hasLambdaMin()? getLambdaMin() : -std::numeric_limits<double>::max());
-    lambdaMax->set(int(constraintId), hasLambdaMax()? getLambdaMax() : std::numeric_limits<double>::max());
+    lambdaMin->push_back(hasLambdaMin()? getLambdaMin() : -std::numeric_limits<double>::max());
+    lambdaMax->push_back(hasLambdaMax()? getLambdaMax() : std::numeric_limits<double>::max());
 }
 
 

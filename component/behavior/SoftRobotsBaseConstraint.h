@@ -132,10 +132,8 @@ public:
     ///
     /// \param lambdaMin
     /// \param lambdaMax
-    /// \param constraintId
-    void buildLambdaLimitsVector(defaulttype::BaseVector* lambdaMin,
-                                 defaulttype::BaseVector* lambdaMax,
-                                 const unsigned int& constraintId);
+    void buildLambdaLimitsVector(helper::vector<double> *lambdaMin,
+                                 helper::vector<double> *lambdaMax);
 
     /// Build the global vectors containing the limits on delta
     ///
