@@ -30,6 +30,7 @@
 
 #include "SoftRobotsBaseConstraint.h"
 
+
 namespace sofa
 {
 
@@ -137,22 +138,19 @@ unsigned int SoftRobotsBaseConstraint::getNbLines()
 }
 
 
-void SoftRobotsBaseConstraint::buildLambdaLimitsVector(helper::vector<double> *lambdaMin,
-                                                       helper::vector<double> *lambdaMax)
+void SoftRobotsBaseConstraint::buildLambdaLimitsVector(BaseVector *lambdaMin,
+                                                       BaseVector *lambdaMax)
 {
-    lambdaMin->push_back(hasLambdaMin()? getLambdaMin() : -std::numeric_limits<double>::max());
-    lambdaMax->push_back(hasLambdaMax()? getLambdaMax() : std::numeric_limits<double>::max());
+    lambdaMin->set(int(m_cId), hasLambdaMin()? getLambdaMin() : -std::numeric_limits<double>::max());
+    lambdaMax->set(int(m_cId), hasLambdaMax()? getLambdaMax() : std::numeric_limits<double>::max());
 }
 
 
-void SoftRobotsBaseConstraint::buildDeltaLimitsVector(helper::vector<double> *deltaMin,
-                                                      helper::vector<double> *deltaMax)
+void SoftRobotsBaseConstraint::buildDeltaLimitsVector(BaseVector *deltaMin,
+                                                      BaseVector *deltaMax)
 {
-    if(hasDeltaMin() || hasDeltaMax())
-    {
-        deltaMin->push_back(hasDeltaMin()? getDeltaMin() : -std::numeric_limits<double>::max());
-        deltaMax->push_back(hasDeltaMax()? getDeltaMax() : std::numeric_limits<double>::max());
-    }
+    deltaMin->set(int(m_cId), hasDeltaMin()? getDeltaMin() : -std::numeric_limits<double>::max());
+    deltaMax->set(int(m_cId), hasDeltaMax()? getDeltaMax() : std::numeric_limits<double>::max());
 }
 
 

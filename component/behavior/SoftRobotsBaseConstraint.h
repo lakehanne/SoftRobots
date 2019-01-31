@@ -132,15 +132,17 @@ public:
     ///
     /// \param lambdaMin
     /// \param lambdaMax
-    void buildLambdaLimitsVector(helper::vector<double> *lambdaMin,
-                                 helper::vector<double> *lambdaMax);
+    /// \param constraintId constraint position in global vector
+    void buildLambdaLimitsVector(defaulttype::BaseVector *lambdaMin,
+                                 defaulttype::BaseVector *lambdaMax);
 
     /// Build the global vectors containing the limits on delta
     ///
     /// \param deltaMin
     /// \param deltaMax
-    void buildDeltaLimitsVector(helper::vector<double>* deltaMin,
-                                helper::vector<double>* deltaMax);
+    /// \param constraintId constraint position in global vector
+    void buildDeltaLimitsVector(defaulttype::BaseVector* deltaMin,
+                                defaulttype::BaseVector* deltaMax);
 
 
 protected:

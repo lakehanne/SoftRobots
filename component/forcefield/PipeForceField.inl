@@ -30,8 +30,6 @@
 #ifndef SOFA_COMPONENT_FORCEFIELD_PIPEFORCEFIELD_INL
 #define SOFA_COMPONENT_FORCEFIELD_PIPEFORCEFIELD_INL
 
-#include "PipeForceField.h"
-#include <SofaBaseLinearSolver/FullVector.h>
 #include <sofa/core/behavior/MechanicalState.h>
 using sofa::core::behavior::MechanicalState ;
 using sofa::core::objectmodel::BaseContext ;
@@ -53,6 +51,8 @@ using std::endl ;
 
 #include <algorithm>
 #include <ctime>
+
+#include "PipeForceField.h"
 
 namespace sofa
 {

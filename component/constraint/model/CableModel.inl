@@ -306,12 +306,10 @@ void CableModel<DataTypes>::buildConstraintMatrix(const ConstraintParams* cParam
     m_columnIndex = cIndex;
 
     MatrixDeriv& matrix = *cMatrix.beginEdit();
-
     MatrixDerivRowIterator rowIterator = matrix.writeLine(m_columnIndex);
 
     if(!m_hasSlidingPoint)
     {
-
         if ( d_hasPullPoint.getValue())
         {
             Deriv direction = d_pullPoint.getValue() - x.getValue()[d_indices.getValue()[0]];
@@ -411,6 +409,7 @@ void CableModel<DataTypes>::getConstraintViolation(const ConstraintParams* cPara
     Real currentLength = getCableLength(positions);
 
     resV->set(m_columnIndex, (d_cableInitialLength.getValue() - currentLength) );
+    msg_warning() << resV->size();
 }
 
 
