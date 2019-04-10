@@ -5,8 +5,9 @@ cmake_policy(SET CMP0048 NEW)
 
 project(SoftRobots VERSION 1.0)
 
-set(SofaFramework_DIR "../v18.06/build")
+# set(SofaFramework_DIR "../v18.06/build")
 find_package(SofaFramework REQUIRED)
+# find_package(SofaMacros REQUIRED)
 
 set(SOFA_BUILD_METIS ON)
 set(PLUGIN_SOFAPYTHON ON)
@@ -97,8 +98,21 @@ target_link_libraries(${PROJECT_NAME} SofaCore SofaConstraint SofaBaseMechanics 
 # Config files and install rules for pythons scripts
 sofa_set_python_directory(${PROJECT_NAME} "python")
 
+function(sofa_generate_package)
+    set(oneValueArgs NAME VERSION INCLUDE_ROOT_DIR INCLUDE_INSTALL_DIR INCLUDE_SOURCE_DIR)
+    set(multiValueArgs TARGETS)
+    cmake_parse_arguments("" "${options}" "${oneValueArgs}" "${multiValueArgs}" ${ARGN} )
+    set(include_install_dir "${_INCLUDE_INSTALL_DIR}")
+    if(_INCLUDE_ROOT_DIR AND NOT _INCLUDE_INSTALL_DIR)
+        set(include_install_dir "${_INCLUDE_ROOT_DIR}")
+        message(WARNING "sofa_generate_package(${_NAME}): INCLUDE_ROOT_DIR is deprecated. Please use INCLUDE_INSTALL_DIR instead.")
+    endif()
+    sofa_install_targets("${_NAME}" "${_TARGETS}" "${include_install_dir}" "${_INCLUDE_SOURCE_DIR}")
+    sofa_write_package_config_files("${_NAME}" "${_VERSION}")
+endfunction()
+
 ## Install rules for the library and headers; CMake package configurations files
-sofa_generate_package(NAME SoftRobots VERSION ${PROJECT_VERSION} TARGETS ${PROJECT_NAME} INCLUDE_ROOT_DIR SoftRobots)
+sofa_generate_package(NAME SoftRobots VERSION ${PROJECT_VERSION} TARGETS ${PROJECT_NAME} INCLUDE_INSTALL_DIR SoftRobots)
 
 if(SOFA_BUILD_TESTS)
     add_subdirectory(tests)
