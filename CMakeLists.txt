@@ -5,7 +5,13 @@ cmake_policy(SET CMP0048 NEW)
 
 project(SoftRobots VERSION 1.0)
 
+set(SofaFramework_DIR "../v18.06/build")
 find_package(SofaFramework REQUIRED)
+
+set(SOFA_BUILD_METIS ON)
+set(PLUGIN_SOFAPYTHON ON)
+set(MODULE_SOFASPARSESOLVER ON)
+
 
 option(SOFTROBOTS_IGNORE_ERRORS "Enable this option to ignore the recommendations and generate anyway." OFF)
 
@@ -97,5 +103,3 @@ sofa_generate_package(NAME SoftRobots VERSION ${PROJECT_VERSION} TARGETS ${PROJE
 if(SOFA_BUILD_TESTS)
     add_subdirectory(tests)
 endif()
-
-
