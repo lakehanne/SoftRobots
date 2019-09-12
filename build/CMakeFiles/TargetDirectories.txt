@@ -1,0 +1,9 @@
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/install/strip.dir
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/install/local.dir
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/install.dir
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/package_source.dir
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/package.dir
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/SoftRobots.dir
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/rebuild_cache.dir
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/edit_cache.dir
+/home/lex/catkin_ws/src/superchicko/SoftRobots/build/CMakeFiles/list_install_components.dir
