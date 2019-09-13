@@ -3,29 +3,32 @@ project(SoftRobots VERSION 1.0)
 
 add_compile_options(-std=c++14)
 
- # best to read SOFA_ROOTfrom cmd line due to different requirements
- if("${SOFA_ROOT}" STREQUAL "")
- 	# see if it can be retrieved from ENV VAR
-	if($ENV{SOFA_ROOT} STREQUAL "")
-	 	message(FATAL_ERROR "\nYou must explicitly provide the path to sofa root build directory if"
-		 					"you have not set the SOFA_ROOT envionment name"
-		 					"e.g. cmake -DSOFA_ROOT=/sofa /path/to/CMakeLists.txt")
-	else()
-		set(SOFA_ROOT "$ENV{SOFA_ROOT}")
-		message(STATUS "Setting path ${SOFA_ROOT} as sofa root directory")
-	endif()
-endif()
-
-set(CMAKE_INSTALL_PREFIX "${SOFA_ROOT}/build/install;${SOFA_ROOT}/cmake")
-list(APPEND CMAKE_MODULE_PATH "${SOFA_ROOT}/cmake")
-list(APPEND CMAKE_PREFIX_PATH "${SOFA_ROOT}/install/lib/cmake")
+OPTION(PLUGIN_SOFAPYTHON "Build with SOFA python" ON)
+OPTION(MODULE_SOFASPARSESOLVER "Build Sofa with Sparse Solver " ON)
+#  # best to read SOFA_ROOTfrom cmd line due to different requirements
+#  if("${SOFA_ROOT}" STREQUAL "")
+#  	# see if it can be retrieved from ENV VAR
+# 	if($ENV{SOFA_ROOT} STREQUAL "")
+# 	 	message(FATAL_ERROR "\nYou must explicitly provide the path to sofa root build directory if"
+# 		 					"you have not set the SOFA_ROOT envionment name"
+# 		 					"e.g. cmake -DSOFA_ROOT=/sofa /path/to/CMakeLists.txt")
+# 	else()
+# 		set(SOFA_ROOT "$ENV{SOFA_ROOT}")
+# 		message(STATUS "Setting path ${SOFA_ROOT} as sofa root directory")
+# 	endif()
+# endif()
+#
+# set(CMAKE_INSTALL_PREFIX "${SOFA_ROOT}/build/install;${SOFA_ROOT}/cmake")
+# list(APPEND CMAKE_MODULE_PATH "${SOFA_ROOT}/cmake")
+# list(APPEND CMAKE_PREFIX_PATH "${SOFA_ROOT}/install/lib/cmake")
 
 include(cmake/environment.cmake)
 
-find_package(SofaFramework REQUIRED)
+# find_package(SofaFramework REQUIRED)
 find_package(SofaCommon REQUIRED) # SofaRigid
 find_package(SofaMisc REQUIRED) # SofaMiscMapping
-# 
+# find_package(STLIB REQUIRED) # STLIB
+#
 # # artificially added
 # OPTION(PLUGIN_SOFAPYTHON "PLUGIN_SOFAPYTHON" ON)
 # OPTION(MODULE_SOFASPARSESOLVER "MODULE_SOFASPARSESOLVER" ON)
